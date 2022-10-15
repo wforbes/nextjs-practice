@@ -1,10 +1,10 @@
-import styles from '../styles/Layout.module.js'
+import styles from '../styles/Layout.module.css'
 
-const Layout = () => {
+const Layout = ({ children }) => {
 	return (
 		<div className={styles.container}>
 			<main className={styles.main}>
-				
+				{ children }
 			</main>
 		</div>
 	)
