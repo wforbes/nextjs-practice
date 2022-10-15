@@ -1,13 +1,16 @@
 import Head from 'next/head'
 
 export default function Home({ articles }) {
-  console.log(articles)
   return (
     <div>
       <Head>
         <title>Next.js Practice</title>
       </Head>
-      <h1>Welcome to Next</h1>
+      {
+        articles.map(article => 
+          (<h3 key={article.id}>{article.title}</h3>)
+        )
+      }
     </div>
   )
 }
