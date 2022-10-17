@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { isEmpty } from '../../lib/util.js'
+import { has, isEmpty } from '../../lib/util.js'
+import styles from '../../styles/WText.module.css'
 
 const WText = (props) => {
 
-	const [styles, setStyles] = useState({})
+	const [styleState, setStyleState] = useState({})
 
 	//TODO: create a unique id / name if not supplied
 	const id = isEmpty(props.id) ? 'txtInput' : props.id
@@ -16,17 +17,12 @@ const WText = (props) => {
 	const validMsg = isEmpty(props.validMsg) ? '' : props.validMsg
 	const [_validMsg, setValidMsg] = useState('')
 
-	const labelStyles = {
-		minHeight: '1.5em',
-		fontSize: '0.5em !important',
-		color: 'red'
-	}
-
 	const handleOnChange = (value) => {
 		props.onChange(value)
 	}
 
 	const handleOnBlur = (value) => {
+		if (!has(props, 'onBlur')) return;
 		props.onBlur(value)
 	}
 
@@ -39,8 +35,8 @@ const WText = (props) => {
 	}, [props.errorState])
 
 	const setErrorState = (inError) => {
-		if (inError) setStyles({ outlineColor: 'red', borderColor: 'red' })
-		else setStyles({})
+		if (inError) setStyleState({ outlineColor: 'red', borderColor: 'red' })
+		else setStyleState({})
 	}
 
 	return (
@@ -52,11 +48,11 @@ const WText = (props) => {
 				className={className}
 				placeholder={placeholder}
 				value={value}
-				style={Object.assign({}, styles)}
+				style={Object.assign({}, styleState)}
 				onChange={e => handleOnChange(e.target.value)}
 				onBlur={e => handleOnBlur(e.target.value)}
 			/>
-			<label htmlFor={name} style={labelStyles}>{ validMsg }</label>
+			<label htmlFor={name} className={styles.validLabel}>{ validMsg }</label>
 		</div>
 	)
 }

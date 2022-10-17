@@ -88,6 +88,9 @@ const Signup = () => {
 	const handlePasswordChange = (value) => {
 		setPassword(value)
 	}
+	const handleSignupClick = () => {
+		console.log('clicked!')
+	}
 
 	return (
 		<div>
@@ -133,7 +136,7 @@ const Signup = () => {
 					/>
 				</div>
 				<div>
-					<button className={styles.formBtn}>Sign Up</button>
+					<button className={styles.formBtn} onClick={handleSignupClick}>Sign Up</button>
 				</div>
 			</div>
 		</div>
