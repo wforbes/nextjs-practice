@@ -5,8 +5,10 @@ const WText = (props) => {
 
 	const [styles, setStyles] = useState({})
 
+	//TODO: create a unique id / name if not supplied
 	const id = isEmpty(props.id) ? 'txtInput' : props.id
 	const name = isEmpty(props.name) ? 'txtInput' : props.name
+	const className = isEmpty(props.className) ? '' : props.className
 	const type = isEmpty(props.type) ? 'text' : props.type
 	const placeholder = isEmpty(props.placeholder) ? '' : props.placeholder
 	const value = isEmpty(props.value) ? '' : props.value
@@ -15,6 +17,7 @@ const WText = (props) => {
 	const [_validMsg, setValidMsg] = useState('')
 
 	const labelStyles = {
+		minHeight: '1.5em',
 		fontSize: '0.5em !important',
 		color: 'red'
 	}
@@ -46,6 +49,7 @@ const WText = (props) => {
 				id={id}
 				name={name}
 				type={type}
+				className={className}
 				placeholder={placeholder}
 				value={value}
 				style={Object.assign({}, styles)}

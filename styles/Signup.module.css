@@ -1,4 +1,28 @@
 .container {
 	display: flex;
 	flex-direction: column;
+	border: 0.1em solid grey;
+	border-bottom: 0.2em solid grey;
+	padding: 1em 3em;
+}
+
+.heading {
+	text-align: center;
+	padding: 0;
+	margin: 0 0 1em 0;
+}
+
+.formTxt {
+	line-height: 1.3em;
+	min-height: 2em;
+	border: 0.2em solid black;
+}
+
+.formBtn {
+	background-color:cornflowerblue;
+	outline: 0.1em;
+	border: 0.1em solid black;
+	padding: 0.5em;
+	font-weight: bolder;
+	font-size: 0.8em;
 }

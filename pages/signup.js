@@ -7,6 +7,8 @@ import { isEmpty, emailRegex, o } from '../lib/util'
 
 const Signup = () => {
 	const [email, setEmail] = useState('')
+	const [username, setUsername] = useState('')
+	const [password, setPassword] = useState('')
 	
 	const [emailValidMsg, setEmailValidMsg] = useState('');
 	const [emailErrorState, setEmailErrorState] = useState(false);
@@ -48,7 +50,6 @@ const Signup = () => {
 		setEmailErrorState(!valid)
 		return valid
 	}
-	
 	const emailValidations = [
 		[
 			(value) => emailRegex.test(value.toLowerCase()),
@@ -61,7 +62,6 @@ const Signup = () => {
 			'Email was already used'
 		]
 	]
-
 	const appendEmailValidMsg = (str) => {
 		if (emailValidMsg.includes(str)) return;
 
@@ -70,7 +70,6 @@ const Signup = () => {
 		else
 			setEmailValidMsg(str)
 	}
-
 	const removeEmailValidMsg = (str) => {
 		if (emailValidMsg.includes(str)) {
 			let newMsg = emailValidMsg.replace(str, '')
@@ -78,10 +77,16 @@ const Signup = () => {
 			setEmailValidMsg(newMsg)
 		}
 	}
-
 	const clearEmailValidMsg = () => {
 		setEmailErrorState(false)
 		setEmailValidMsg('')
+	}
+
+	const handleUsernameChange = (value) => {
+		setUsername(value)
+	}
+	const handlePasswordChange = (value) => {
+		setPassword(value)
 	}
 
 	return (
@@ -89,12 +94,15 @@ const Signup = () => {
 			<Head>
 				<title>Sign Up</title>
 			</Head>
-			<h1 style={{textAlign: 'center'}}>Sign Up</h1>
 			<div className={styles.container}>
+				<div>
+					<h2 className={styles.heading}>Sign Up</h2>
+				</div>
 				<div>
 					<WText
 						id='emailTxt'
 						name='emailTxt'
+						className={styles.formTxt}
 						type='email'
 						placeholder='Email Address'
 						value={email}
@@ -105,12 +113,27 @@ const Signup = () => {
 					/>
 				</div>
 				<div>
-					<input id='usernameTxt' type="text" placeholder="username" />
-					<label htmlFor='usernameTxt'>{ usernameValidationMsg }</label>
+					<WText
+						id='usernameTxt'
+						name='usernameTxt'
+						className={styles.formTxt}
+						placeholder='Username'
+						value={username}
+						onChange={v => handleUsernameChange(v)}
+					/>
 				</div>
 				<div>
-					<input id='passwordTxt' type="password" placeholder="password" />
-					<label htmlFor="passwordTxt">{ passwordValidationMsg }</label>
+					<WText
+						id='passwordTxt'
+						name='passwordTxt'
+						className={styles.formTxt}
+						placeholder='Password'
+						value={password}
+						onChange={v => handlePasswordChange(v)}
+					/>
+				</div>
+				<div>
+					<button className={styles.formBtn}>Sign Up</button>
 				</div>
 			</div>
 		</div>
